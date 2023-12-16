@@ -1,0 +1,30 @@
+package spring.anno.ex4;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("logic") //id가 logic이 된다 #방법1
+//("logic") @Component 없음 #방법2
+
+public class LogicController {
+
+	@Autowired
+	//정확한 빈의 아이디로 주입_모호성이 있는경우에는 @Resourse(name="myDao")
+	DaoInter daoInter;
+	
+	public LogicController(MyDao dao) {
+		this.daoInter=dao;
+	}
+	
+	//insert
+	public void insert(String str)
+	{
+		daoInter.insertData(str);
+	}
+	
+	//delete
+	public void delete(String num)
+	{
+		daoInter.deleteData(num);
+	}
+}
